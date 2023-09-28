@@ -95,8 +95,33 @@ def bez_(a, b):
     return [m, n]
 
 
+@proxy
 def prodG_(a, b, g):
     return div_(prod_(a, b), g)[1]
+
+
+@proxy
+def invG_(a, g):
+    return bez_(a, g)[0]
+
+
+def expG_(a, n, g):
+    if n == 0:
+        return [1]
+    if n == 1:
+        return a
+    if n % 2 == 0:
+        return prodG_(expG_(a, n // 2, g), expG_(a, n // 2, g), g)
+    else:
+        return prodG_(a, expG_(a, n - 1, g), g)
+
+
+@proxy
+def ordG_(a, g):
+    i = 1
+    while expG_(a, i, g) != [1]:
+        i += 1
+    return i
 
 
 def prod(a, b):
@@ -113,3 +138,15 @@ def bez(a, b):
 
 def prodG(a, b, g):
     return toNum(prodG_(a, b, g))
+
+
+def invG(a, g):
+    return toNum(invG_(a, g))
+
+
+def expG(a, n, g):
+    return toNum(expG_(a, n, g))
+
+
+def ordG(a, g):
+    return ordG_(a, g)
