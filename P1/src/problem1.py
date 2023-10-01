@@ -123,6 +123,13 @@ def ordG_(a, g):
         i += 1
     return i
 
+@proxy
+def logG_(a, b, g):
+    i = 1
+    while expG_(a, i, g) != div_(b, g)[1]:
+        i += 1
+    return i
+
 
 def prod(a, b):
     return toNum(prod_(a, b))
@@ -150,3 +157,6 @@ def expG(a, n, g):
 
 def ordG(a, g):
     return ordG_(a, g)
+
+def logG(a, b, g):
+    return toNum(logG_(a, b, g))
