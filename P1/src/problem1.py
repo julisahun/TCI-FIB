@@ -160,3 +160,6 @@ def ordG(a, g):
 
 def logG(a, b, g):
     return toNum(logG_(a, b, g))
+
+def sum(a, b):
+    return toNum(sum_(a, b))
