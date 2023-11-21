@@ -1,7 +1,7 @@
 import sys
 path = sys.path[0]
 sys.path.insert(0, path.replace('/test', '/src'))
-from problem1 import prod, div, bez, prodG, invG, expG, ordG
+from utilsG import prod, div, bez, prodG, invG, expG, ordG
 
 
 def testProd():
