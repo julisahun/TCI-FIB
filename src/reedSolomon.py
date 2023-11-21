@@ -1,4 +1,4 @@
-from utilsP import divP, sumP, prodP, grauP, evalP
+from utilsP import divP, sumP, prodP, grauP
 from utilsG import expG
 
 def EEP(poly1, poly2, grau, modulus):
@@ -30,9 +30,12 @@ def genRS(r, b, modulus):
     g = prodP(g, [expG(b, i+1, modulus), 1], modulus)
   return g
 
+def subsP(value, poly, modulus):
+  return divP(poly, [value, 1], modulus)[1][0]
+
 def sindRS(received, b, r, modulus):
   s = []
   for i in range(r):
-    si = evalP(received, expG(b, i+1, modulus), modulus)
+    si = subsP(expG(b, i+1, modulus), received, modulus)
     s.append(si)
   return s

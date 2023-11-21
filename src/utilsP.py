@@ -54,10 +54,4 @@ def divP(polinomi1,polinomi2,modul):
     grauResidus-grau2 ) ) , modul )
   return [quocient,residus]
 
-
-def evalP(poly, value, modulus):
-  acc = 0
-  for index, pos in enumerate(poly):
-    acc += prodG(pos, expG(value, index, modulus), modulus)
-  return acc
   
