@@ -37,9 +37,19 @@ def testSindRS():
     assert rs.sindRS(a, b, c, d) == e
   print("TestSindRS: OK\n")
 
+def testSugiRS():
+  print("Running TestSugiRS")
+  tests = [([1,2,3,4,5,6,7,8],8,1961), ([1,2,3,4,5,6,7,8],10,1961), ([1,2,3,4,5,6,7,8],12,1961)]
+  expected = [([[298, 224, 926, 769], [298, 692, 545, 926, 351]]), ( [[477, 665, 221, 393, 750], [477, 291, 252, 969, 500, 651]]), ([[264, 606, 580, 175, 303, 744], [264, 78, 448, 116, 62, 590, 763]])]
+  for (a, b, c), e in zip(tests, expected):
+    assert rs.sugiRS(a, b, c) == e
+  print("TestSugiRS: OK\n")
 
 
-testEEP()
-testGenRS()
-testSubsP()
-testSindRS()
+
+if (__name__ == "__main__"):
+  testEEP()
+  testGenRS()
+  testSubsP()
+  testSindRS()
+  testSugiRS()

@@ -68,11 +68,11 @@ def testOrdG():
         assert ordG(a, g) == e
     print("TestOrdG: OK\n")
 
-
-testProd()
-testDiv()
-testBez()
-testProdG()
-testInvG()
-testExpG()
-testOrdG()
+if (__name__ == "__main__"):
+    testProd()
+    testDiv()
+    testBez()
+    testProdG()
+    testInvG()
+    testExpG()
+    testOrdG()
