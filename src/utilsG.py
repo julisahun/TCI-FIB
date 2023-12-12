@@ -1,5 +1,6 @@
 from copy import deepcopy
 from functools import reduce
+import math
 import sys
 sys.path.append('../')
 
@@ -111,7 +112,8 @@ def expG_(a, n, g):
     if n == 1:
         return a
     if n % 2 == 0:
-        return prodG_(expG_(a, n // 2, g), expG_(a, n // 2, g), g)
+        e = expG_(a, n // 2, g)
+        return prodG_(e, e, g)
     else:
         return prodG_(a, expG_(a, n - 1, g), g)
 
@@ -125,9 +127,11 @@ def ordG_(a, g):
 
 @proxy
 def logG_(a, b, g):
-    i = 1
+    i = 0
+    m = math.floor(math.log(toNum(g), 2))
     while expG_(a, i, g) != div_(b, g)[1]:
         i += 1
+        if (i > 2**m): return None
     return i
 
 

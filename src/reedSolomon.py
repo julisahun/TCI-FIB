@@ -1,5 +1,6 @@
 from utilsP import divP, sumP, prodP, grauP
 from utilsG import expG
+import math
 
 beta = 2
 
@@ -36,8 +37,8 @@ def subsP(value, poly, modulus):
   remainder = divP(poly, [value, 1], modulus)[1] or [0]
   return remainder[0]
 
-def sindRS(received, b, r, modulus):
-  return [subsP(expG(b, i+1, modulus), received, modulus) for i in range(r)]
+def sindRS(received, b, r, g):
+  return [subsP(expG(b, i+1, g), received, g) for i in range(r)]
 
 def sugiRS(syndrome, r, modulus):
   xr = [0] * r + [1]
@@ -45,11 +46,13 @@ def sugiRS(syndrome, r, modulus):
   return [w, p]
 
 def roots(pol, modulus):
-  return [i for i in range(modulus) if (subsP(i, pol, modulus) == 0)]
+  m = math.floor(math.log(modulus, 2))
+  return [i for i in range(2**m) if (subsP(i, pol, modulus) == 0)]
 
 def derivate(pol):
-  derivate = []
-  for i in range(len(pol)-1):
-    if (i % 2 == 0): derivate.append(0)
-    else: derivate.append((i+1)*pol[i+1])
-  return derivate
+  d = []
+  for i, e in enumerate(pol):
+    if (i == 0): continue
+    if (i % 2 == 0): d.append(0)
+    else: d.append(e)
+  return d
