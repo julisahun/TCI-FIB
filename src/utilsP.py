@@ -10,9 +10,10 @@ def sumP(polinomi1,polinomi2):
   else:
     p1=polinomi2
     p2=polinomi1
+  res = [*p2]
   for i in range(min(l1,l2)):
-    p2[i]=p1[i]^p2[i]
-  return p2
+    res[i] = p1[i]^p2[i]
+  return res
 # redueix el polinom pol (treu els coeficients 0 a la dreta)
 def redP(pol,modul):
   while pol!=[] and div(pol[-1],modul)[1]==0:
