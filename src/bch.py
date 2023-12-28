@@ -19,9 +19,17 @@ def puja(p):
 def baixa(n):
   return int(''.join(map(str, n[::-1])), 2)
 
+def valueInArray(array, value):
+    for val in array:
+        if val == value:
+            return True
+    return False
+
 def genBCH(beta, D, modulus):
-  # fer el set de fer minP desde B find a B**D-1
-  return
+  results = [minP(utilsG.expG(beta, i, modulus), modulus) for i in range(1, D)]
+  filteredResults = [result for (i,result) in enumerate(results) if not valueInArray(results[0:i], result)]
+
+  return functools.reduce(lambda result, acc: utilsP.prodP(acc, result, modulus), filteredResults)
 
 def sindBCH(received, beta, D, modulus):
   return  
