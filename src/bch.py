@@ -1,6 +1,7 @@
 import utilsG
 import utilsP
 import functools
+import reedSolomon as rs
 
 def minP(beta, modulus):
   p = [beta, 1]
@@ -31,11 +32,11 @@ def genBCH(beta, D, modulus):
 
   return functools.reduce(lambda result, acc: utilsP.prodP(acc, result, modulus), filteredResults)
 
-def sindBCH(received, beta, D, modulus):
-  return  
+def sindBCH(rebut, beta, D ,modulus):
+    return rs.sindRS(rebut, beta, D - 1, modulus)
 
-def sugiBCH(syndrome, beta, D, modulus):
-  return
+def sugiBCH(syndrome,D,modulus):
+    return rs.sugiRS(syndrome,D - 1, modulus)[1]
 
-def dimBCH(beta, n, D, modulus):
-  return
+def dimBCH(beta,n,D,modulus):
+    return n - utilsP.grauP(genBCH(beta,D,modulus))
