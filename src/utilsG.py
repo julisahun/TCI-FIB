@@ -126,10 +126,10 @@ def ordG_(a, g):
     return i
 
 @proxy
-def logG_(a, b, g):
+def logG_(base, numeral, g):
     i = 0
     m = math.floor(math.log(toNum(g), 2))
-    while expG_(a, i, g) != div_(b, g)[1]:
+    while expG_(base, i, g) != div_(numeral, g)[1]:
         i += 1
         if (i > 2**m): return None
     return i
