@@ -4,6 +4,11 @@ import math
 import sys
 sys.path.append('../')
 
+def genI(n):
+  for i in range(0, n):
+    xi = [0]*i + [1] + [0]*(n-i-1)
+    yield xi
+
 
 def toNum(p):
     if type(p) == int:
@@ -13,12 +18,16 @@ def toNum(p):
     return int(''.join(map(str, p)), 2)
 
 
-def toPoly(n):
+def toPoly(n, l = None):
+    poly = None
     if type(n) == list:
-        return n
-    if type(n) == str:
-        return list(map(lambda x: int(x), n))
-    return list(map(lambda x: int(x), bin(n)[2:]))
+        poly = n
+    elif type(n) == str:
+        poly = list(map(lambda x: int(x), n))
+    else: poly = list(map(lambda x: int(x), bin(n)[2:]))
+    if l != None:
+        poly = [0] * (l - len(poly)) + poly
+    return poly
 
 
 def toStr(p):
