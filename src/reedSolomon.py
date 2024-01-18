@@ -2,8 +2,6 @@ from utilsP import divP, sumP, prodP, grauP
 from utilsG import expG
 import math
 
-beta = 2
-
 def EEP(poly1, poly2, grau, modulus):
   p1 = poly1
   p2 = poly2
